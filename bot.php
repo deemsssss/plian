@@ -4,7 +4,7 @@ api.phpPHP
 
 $strAccessToken = "<CCs26RQeROuCLhqof2ZMlcLKuZnTAj2ELMEW7lpyYB1ULGBgrSajcFdKCzq6xdSuauVOwwl2NhZBjKtcJT7gcxjhXPtFJmoooHcgeFWsO2wsjNMa1ia3wAt/DUKnIHVgfATdaO6htxsUFXG0JP7L2QdB04t89/1O/w1cDnyilFU=>";
 
-$content = file_get_contents('php://input');
+$content = file_get_contents('https://plian.herokuapp.com/');
 $arrJson = json_decode($content, true);
 
 $strUrl = "https://api.line.me/v2/bot/message/reply";
@@ -16,8 +16,8 @@ $_msg = $arrJson['events'][0]['message']['text'];
 
 
 $api_key="<MLAB APIKEY>";
-$url = 'https://api.mlab.com/api/1/databases/duckduck/collections/linebot?apiKey='.$api_key.'';
-$json = file_get_contents('https://api.mlab.com/api/1/databases/duckduck/collections/linebot?apiKey='.$api_key.'&q={"question":"'.$_msg.'"}');
+$url = 'https://plian.herokuapp.com/'.$api_key.'';
+$json = file_get_contents('https://plian.herokuapp.com/'.$api_key.'&q={"question":"'.$_msg.'"}');
 $data = json_decode($json);
 $isData=sizeof($data);
 
