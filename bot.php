@@ -1,20 +1,47 @@
 <?php
-require 'vendor/autoload.php';
+$access_token = 'XXXXXXXXXXXXXXXXXXXXXXX';
 
-use Mpociot\BotMan\BotManFactory;
-use React\EventLoop\Factory;
+// Get POST body content
+$content = file_get_contents('php://input');
+// Parse JSON
+$events = json_decode($content, true);
+// Validate parsed JSON data
+if (!is_null($events['events'])) {
+	// Loop through each event
+	foreach ($events['events'] as $event) {
+		// Reply only when message sent is in 'text' format
+		if ($event['type'] == 'message' && $event['message']['type'] == 'text') {
+			// Get text sent
+			$text = $event['message']['text'];
+			// Get replyToken
+			$replyToken = $event['replyToken'];
 
-$loop = Factory::create();
-$botman = BotManFactory::createForRTM([
-    'slack_token' => 'CCs26RQeROuCLhqof2ZMlcLKuZnTAj2ELMEW7lpyYB1ULGBgrSajcFdKCzq6xdSuauVOwwl2NhZBjKtcJT7gcxjhXPtFJmoooHcgeFWsO2wsjNMa1ia3wAt/DUKnIHVgfATdaO6htxsUFXG0JP7L2QdB04t89/1O/w1cDnyilFU='
-], $loop);
+			// Build message to reply back
+			$messages = [
+				'type' => 'text',
+				'text' => $text
+			];
 
-$botman->hears('ดีจ้า', function($bot) {
-    $bot->reply('หวัดดี เราชื่อ อีเปลี่ยน');
-});
+			// Make a POST Request to Messaging API to reply to sender
+			$url = 'https://api.line.me/v2/bot/message/reply';
+			$data = [
+				'replyToken' => $replyToken,
+				'messages' => [$messages],
+			];
+			$post = json_encode($data);
+			$headers = array('Content-Type: application/json', 'Authorization: Bearer ' . $access_token);
 
-$botman->hears('convo', function($bot) {
-    $bot->startConversation(new ExampleConversation());
-});
+			$ch = curl_init($url);
+			curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "POST");
+			curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+			curl_setopt($ch, CURLOPT_POSTFIELDS, $post);
+			curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
+			curl_setopt($ch, CURLOPT_FOLLOWLOCATION, 1);
+			$result = curl_exec($ch);
+			curl_close($ch);
 
-$loop->run();
+			echo $result . "\r\n";
+		}
+	}
+}
+echo "OK";
