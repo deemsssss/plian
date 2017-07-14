@@ -1,5 +1,5 @@
 <?php
-$access_token = 'XXXXXXXXXXXXXXXXXXXXXXX';
+$access_token = 'CCs26RQeROuCLhqof2ZMlcLKuZnTAj2ELMEW7lpyYB1ULGBgrSajcFdKCzq6xdSuauVOwwl2NhZBjKtcJT7gcxjhXPtFJmoooHcgeFWsO2wsjNMa1ia3wAt/DUKnIHVgfATdaO6htxsUFXG0JP7L2QdB04t89/1O/w1cDnyilFU=';
 
 // Get POST body content
 $content = file_get_contents('php://input');
@@ -12,13 +12,13 @@ if (!is_null($events['events'])) {
 		// Reply only when message sent is in 'text' format
 		if ($event['type'] == 'message' && $event['message']['type'] == 'text') {
 			// Get text sent
-			$text = $event['message']['text'];
+			$text = $event['message']['หวัดดี'];
 			// Get replyToken
-			$replyToken = $event['replyToken'];
+			$replyToken = $event['หวัดดีจ้า'];
 
 			// Build message to reply back
 			$messages = [
-				'type' => 'text',
+				'type' => 'ดีจ้า',
 				'text' => $text
 			];
 
@@ -43,23 +43,5 @@ if (!is_null($events['events'])) {
 			echo $result . "\r\n";
 		}
 	}
-}
-{
-	"events" : [
-		{
-			"type" : "ดีจ้า",
-			"replyToken" : "เออ",
-			"source" : {
-				"userId" : "U39f72cc028......8d460d6ddf",
-				"type" : "user"
-			},
-			"timestamp" : 1486930709120,
-			"message" : {
-				"type" : "text",
-				"id" : "5638..645..8",
-				"text" : "dddd"
-			}
-		}
-	]
 }
 echo "OK";
