@@ -1,26 +1,65 @@
-<?php 
-$chOne = curl_init(); 
-curl_setopt( $chOne, CURLOPT_URL, "https://notify-api.line.me/api/notify"); 
-// SSL USE 
-curl_setopt( $chOne, CURLOPT_SSL_VERIFYHOST, 0); 
-curl_setopt( $chOne, CURLOPT_SSL_VERIFYPEER, 0); 
-//POST 
-curl_setopt( $chOne, CURLOPT_POST, 1); 
-// Message 
-curl_setopt( $chOne, CURLOPT_POSTFIELDS, "message=สวัสดี"); 
-//ถ้าต้องการใส่รุป ให้ใส่ 2 parameter imageThumbnail และimageFullsize
-//curl_setopt( $chOne, CURLOPT_POSTFIELDS, "message=hi&imageThumbnail=http://www.wisadev.com/wp-content/uploads/2016/08/cropped-wisadevLogo.png&imageFullsize=http://www.wisadev.com/wp-content/uploads/2016/08/cropped-wisadevLogo.png"); 
-// follow redirects 
-curl_setopt( $chOne, CURLOPT_FOLLOWLOCATION, 1); 
-//ADD header array 
-$headers = array( 'Content-type: application/x-www-form-urlencoded', 'Authorization: Bearer Un2LudBajEKlJs8I7qbWIMkl3f2WjGH56Yxxx9yU9zT', ); 
-curl_setopt($chOne, CURLOPT_HTTPHEADER, $headers); 
-//RETURN 
-curl_setopt( $chOne, CURLOPT_RETURNTRANSFER, 1); 
-$result = curl_exec( $chOne ); 
-//Check error 
-if(curl_error($chOne)) { echo 'error:' . curl_error($chOne); } 
-else { $result_ = json_decode($result, true); 
-echo "status : ".$result_['status']; echo "message : ". $result_['message']; } 
-//Close connect 
-curl_close( $chOne ); ?>
+<?php
+$access_token = 'XXXXXXXXXXXXXXXXXXXXXXX';
+
+// Get POST body content
+$content = file_get_contents('php://input');
+// Parse JSON
+$events = json_decode($content, true);
+// Validate parsed JSON data
+if (!is_null($events['events'])) {
+	// Loop through each event
+	foreach ($events['events'] as $event) {
+		// Reply only when message sent is in 'text' format
+		if ($event['type'] == 'message' && $event['message']['type'] == 'text') {
+			// Get text sent
+			$text = $event['message']['text'];
+			// Get replyToken
+			$replyToken = $event['replyToken'];
+
+			// Build message to reply back
+			$messages = [
+				'type' => 'text',
+				'text' => $text
+			];
+
+			// Make a POST Request to Messaging API to reply to sender
+			$url = 'https://api.line.me/v2/bot/message/reply';
+			$data = [
+				'replyToken' => $replyToken,
+				'messages' => [$messages],
+			];
+			$post = json_encode($data);
+			$headers = array('Content-Type: application/json', 'Authorization: Bearer ' . $access_token);
+
+			$ch = curl_init($url);
+			curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "POST");
+			curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+			curl_setopt($ch, CURLOPT_POSTFIELDS, $post);
+			curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
+			curl_setopt($ch, CURLOPT_FOLLOWLOCATION, 1);
+			$result = curl_exec($ch);
+			curl_close($ch);
+
+			echo $result . "\r\n";
+		}
+	}
+}
+{
+	"events" : [
+		{
+			"type" : "ดีจ้า",
+			"replyToken" : "เออ",
+			"source" : {
+				"userId" : "U39f72cc028......8d460d6ddf",
+				"type" : "user"
+			},
+			"timestamp" : 1486930709120,
+			"message" : {
+				"type" : "text",
+				"id" : "5638..645..8",
+				"text" : "dddd"
+			}
+		}
+	]
+}
+echo "OK";
