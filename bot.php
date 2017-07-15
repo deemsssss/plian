@@ -1,8 +1,8 @@
 <?php
  
-$strAccessToken = "ACCESS_TOKEN";
+$strAccessToken = "CCs26RQeROuCLhqof2ZMlcLKuZnTAj2ELMEW7lpyYB1ULGBgrSajcFdKCzq6xdSuauVOwwl2NhZBjKtcJT7gcxjhXPtFJmoooHcgeFWsO2wsjNMa1ia3wAt/DUKnIHVgfATdaO6htxsUFXG0JP7L2QdB04t89/1O/w1cDnyilFU=";
  
-$content = file_get_contents('php://input');
+$content = file_get_contents('https://plian.herokuapp.com/');
 $arrJson = json_decode($content, true);
  
 $strUrl = "https://api.line.me/v2/bot/message/reply";
