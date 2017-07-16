@@ -31,6 +31,16 @@ if($arrJson['events'][0]['message']['text'] == "สวัสดี"){
   $arrPostData['replyToken'] = $arrJson['events'][0]['replyToken'];
   $arrPostData['messages'][0]['type'] = "text";
   $arrPostData['messages'][0]['text'] = "หยิกหี";
+}else if($arrJson['events'][0]['message']['text'] == "กอล์ฟเฟียต"){
+  $arrPostData = array();
+  $arrPostData['replyToken'] = $arrJson['events'][0]['replyToken'];
+  $arrPostData['messages'][0]['type'] = "text";
+  $arrPostData['messages'][0]['text'] = "บ้านอยู่สวนลุม";
+}else if($arrJson['events'][0]['message']['text'] == "Little heart"){
+  $arrPostData = array();
+  $arrPostData['replyToken'] = $arrJson['events'][0]['replyToken'];
+  $arrPostData['messages'][0]['type'] = "text";
+  $arrPostData['messages'][0]['text'] = "หยิกหี";
 }else if($arrJson['events'][0]['message']['text'] == "little heart"){
   $arrPostData = array();
   $arrPostData['replyToken'] = $arrJson['events'][0]['replyToken'];
@@ -60,7 +70,7 @@ if($arrJson['events'][0]['message']['text'] == "สวัสดี"){
   $arrPostData = array();
   $arrPostData['replyToken'] = $arrJson['events'][0]['replyToken'];
   $arrPostData['messages'][0]['type'] = "text";
-  $arrPostData['messages'][0]['text'] = "คำนี้ดีมยังไม่ได้สอนกุเลย";
+  $arrPostData['messages'][0]['text'] = "คำนี้อีดีมยังไม่ได้สอนกุเลย";
 }
  
  
