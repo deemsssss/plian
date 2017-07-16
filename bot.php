@@ -21,6 +21,66 @@ if($arrJson['events'][0]['message']['text'] == "สวัสดี"){
   $arrPostData['replyToken'] = $arrJson['events'][0]['replyToken'];
   $arrPostData['messages'][0]['type'] = "text";
   $arrPostData['messages'][0]['text'] = "หยาบควยจังเลยค่ะ";
+}else if($arrJson['events'][0]['message']['text'] == "แม่ง"){
+  $arrPostData = array();
+  $arrPostData['replyToken'] = $arrJson['events'][0]['replyToken'];
+  $arrPostData['messages'][0]['type'] = "text";
+  $arrPostData['messages'][0]['text'] = "หยาบควยจังเลยลูก";
+}else if($arrJson['events'][0]['message']['text'] == "พ่อง"){
+  $arrPostData = array();
+  $arrPostData['replyToken'] = $arrJson['events'][0]['replyToken'];
+  $arrPostData['messages'][0]['type'] = "text";
+  $arrPostData['messages'][0]['text'] = "หยาบควยจังเลยลูก";
+}else if($arrJson['events'][0]['message']['text'] == "พ่อมึงตาย"){
+  $arrPostData = array();
+  $arrPostData['replyToken'] = $arrJson['events'][0]['replyToken'];
+  $arrPostData['messages'][0]['type'] = "text";
+  $arrPostData['messages'][0]['text'] = "หยาบควยจังเลยลูก";
+}else if($arrJson['events'][0]['message']['text'] == "เหงา"){
+  $arrPostData = array();
+  $arrPostData['replyToken'] = $arrJson['events'][0]['replyToken'];
+  $arrPostData['messages'][0]['type'] = "text";
+  $arrPostData['messages'][0]['text'] = "แล้ว??";
+}else if($arrJson['events'][0]['message']['text'] == "พี่อุ๊"){
+  $arrPostData = array();
+  $arrPostData['replyToken'] = $arrJson['events'][0]['replyToken'];
+  $arrPostData['messages'][0]['type'] = "text";
+  $arrPostData['messages'][0]['text'] = "Red pokky เอเชียทีค น้ำปั่น น้ำผลไม้ อร่อยถูกหลักอนามัย กินได้ เพราะพี่อุ๊ไม่ได้ทำ ถถถถ";
+}else if($arrJson['events'][0]['message']['text'] == "อุ๊"){
+  $arrPostData = array();
+  $arrPostData['replyToken'] = $arrJson['events'][0]['replyToken'];
+  $arrPostData['messages'][0]['type'] = "text";
+  $arrPostData['messages'][0]['text'] = "ถนัดแดก";
+}else if($arrJson['events'][0]['message']['text'] == "ดีม"){
+  $arrPostData = array();
+  $arrPostData['replyToken'] = $arrJson['events'][0]['replyToken'];
+  $arrPostData['messages'][0]['type'] = "text";
+  $arrPostData['messages'][0]['text'] = "หน้าตาดี";
+}else if($arrJson['events'][0]['message']['text'] == "ประยุทธ"){
+  $arrPostData = array();
+  $arrPostData['replyToken'] = $arrJson['events'][0]['replyToken'];
+  $arrPostData['messages'][0]['type'] = "text";
+  $arrPostData['messages'][0]['text'] = "คุกไปทางไหน";
+}else if($arrJson['events'][0]['message']['text'] == "เจ๊ทง"){
+  $arrPostData = array();
+  $arrPostData['replyToken'] = $arrJson['events'][0]['replyToken'];
+  $arrPostData['messages'][0]['type'] = "text";
+  $arrPostData['messages'][0]['text'] = "ไม่รู้จัก";
+}else if($arrJson['events'][0]['message']['text'] == "ทงทง"){
+  $arrPostData = array();
+  $arrPostData['replyToken'] = $arrJson['events'][0]['replyToken'];
+  $arrPostData['messages'][0]['type'] = "text";
+  $arrPostData['messages'][0]['text'] = "ใครวะ";
+}else if($arrJson['events'][0]['message']['text'] == "ทง"){
+  $arrPostData = array();
+  $arrPostData['replyToken'] = $arrJson['events'][0]['replyToken'];
+  $arrPostData['messages'][0]['type'] = "text";
+  $arrPostData['messages'][0]['text'] = "เทรซี่";
+}else if($arrJson['events'][0]['message']['text'] == "เฟียต"){
+  $arrPostData = array();
+  $arrPostData['replyToken'] = $arrJson['events'][0]['replyToken'];
+  $arrPostData['messages'][0]['type'] = "text";
+  $arrPostData['messages'][0]['text'] = "ติดเป๊บซี่";
 }else if($arrJson['events'][0]['message']['text'] == "หยก"){
   $arrPostData = array();
   $arrPostData['replyToken'] = $arrJson['events'][0]['replyToken'];
