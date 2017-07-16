@@ -6,10 +6,19 @@ $content = file_get_contents('php://input');
 $arrJson = json_decode($content, true);
  
 $strUrl = "https://api.line.me/v2/bot/message/reply";
- 
+
 $arrHeader = array();
 $arrHeader[] = "Content-Type: application/json";
 $arrHeader[] = "Authorization: Bearer {$strAccessToken}";
+$_msg = $arrJson['events'][0]['message']['text'];
+ 
+ 
+$api_key="<MLAB APIKEY>";
+$url = 'https://github.com/deemsssss/plian/blob/master/bot.php'.$api_key.'';
+$json = file_get_contents('https://github.com/deemsssss/plian/blob/master/bot.php'.$api_key.'&q={"question":"'.$_msg.'"}');
+$data = json_decode($json);
+$isData=sizeof($data);
+
  
 if($arrJson['events'][0]['message']['text'] == "สวัสดี"){
   $arrPostData = array();
