@@ -21,6 +21,11 @@ if($arrJson['events'][0]['message']['text'] == "สวัสดี"){
   $arrPostData['replyToken'] = $arrJson['events'][0]['replyToken'];
   $arrPostData['messages'][0]['type'] = "text";
   $arrPostData['messages'][0]['text'] = "หยาบควยจังเลยค่ะ";
+}else if($arrJson['events'][0]['message']['text'] == "อ้อ"){
+  $arrPostData = array();
+  $arrPostData['replyToken'] = $arrJson['events'][0]['replyToken'];
+  $arrPostData['messages'][0]['type'] = "text";
+  $arrPostData['messages'][0]['text'] = "นมเล็ก 55555555";
 }else if($arrJson['events'][0]['message']['text'] == "กุ๊ก"){
   $arrPostData = array();
   $arrPostData['replyToken'] = $arrJson['events'][0]['replyToken'];
