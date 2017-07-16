@@ -182,6 +182,33 @@ if($arrJson['events'][0]['message']['text'] == "สวัสดี"){
   $arrPostData['messages'][0]['text'] = "คำนี้อีดีมยังไม่ได้สอนกุเลย";
 }
  
+if (strpos($_msg, 'ฟังกูนะ') !== false) {
+  if (strpos($_msg, 'ฟังกูนะ') !== false) {
+    $x_tra = str_replace("ฟังกูนะ","", $_msg);
+    $pieces = explode("/", $x_tra);
+    $_question=str_replace("[","",$pieces[0]);
+    $_answer=str_replace("]","",$pieces[1]);
+    //Post New Data
+    $newData = json_encode(
+      array(
+        'question' => $_question,
+        'answer'=> $_answer
+      )
+    );
+    $opts = array(
+      'http' => array(
+          'method' => "POST",
+          'header' => "Content-type: application/json",
+          'content' => $newData
+       )
+    );
+    $context = stream_context_create($opts);
+    $returnValue = file_get_contents($url,false,$context);
+    $arrPostData = array();
+    $arrPostData['replyToken'] = $arrJson['events'][0]['replyToken'];
+    $arrPostData['messages'][0]['type'] = "text";
+    $arrPostData['messages'][0]['text'] = 'ขอบคุณที่สอนสั่ง';
+  }
  
 $ch = curl_init();
 curl_setopt($ch, CURLOPT_URL,$strUrl);
